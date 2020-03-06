@@ -1,0 +1,84 @@
+<html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>PAINEL SGA</title>
+	<style type="text/css">
+		* { font-family: Arial; outline: none;}
+
+		#painel-1{	
+			left: 0px;
+			width: 25%;
+			background-color: #214423;
+		}
+		#painel-2
+		{	
+			left: 25%;
+			width: 75%;
+		}
+
+		.painel {
+			position:absolute;
+			top: 0px;
+			background: #111;
+			height: 100%;
+		}
+
+		#wrapper-banner { padding-top: 15px; text-align: center; }
+		#banner { width: 90%; }
+
+		iframe { border: 0; }
+
+		h2 { margin: 70 0 10px 0; color: #FFF; text-transform: uppercase; } 
+
+		video { width: 100%; height: 390px; }
+	</style>
+</head>
+<body background="#214423">
+	<div id="painel-1" class="painel" align="center">
+		<h2>A Defensoria</h2>
+		<video id="video" controls playsinline autoplay muted loop>
+			<source src="institucional.mp4" type="video/mp4">
+		</video>
+		<h2>Informativos</h2>
+		<div id="wrapper-banner">
+			<img src="" id="banner">
+		</div>
+	</div>
+
+	<div id="painel-2" class="painel">
+		<iframe src="http://painelsga.defensoria.ce.def.br/" style="width: 100%; height: 100%;"></iframe>
+	</div>
+
+	<script type="text/javascript">
+		var banners = [
+			{time: 3000, img: 'img/banner-registro-civil-site-2018.jpg'},
+			{time: 2000, img: 'img/nudesa.png'},
+			{time: 2000, img: 'img/mundo-de-direitos.jpg'},
+			{time: 2000, img: 'img/129.jpeg'},
+			{time: 2000, img: 'img/po2019.jpg'},
+			{time: 2000, img: 'img/orgulho-lgbt2.jpg'},
+		];
+
+
+		var timeout;
+		function banner_recursive(index)
+		{
+			window.clearTimeout(timeout);
+
+			document.getElementById('banner').src = banners[index].img;
+			var time = banners[index].time;
+
+			timeout = window.setTimeout(function(){
+				var next_index = index + 1  >= banners.length ? 0 : index + 1;
+				banner_recursive(next_index); 
+			}, time);
+		}
+
+		banner_recursive(0);
+
+
+		
+	</script>
+</body>
+</html>
